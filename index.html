@@ -22,8 +22,19 @@
                             <img src="./assets/img/logo.svg" alt="Hcode Treinamentos">
                             Blog
                         </a>
+                        
+                        <div v-if="isLogged" key="logged" class="login">
+                            <h4>Seja bem-vindo {{username}}</h4>
+                            <a href="#" class="logout bg-danger text-white" v-on:click.prevent="handleLogin">
+                                Fazer logout
+                            </a>
+                        </div>
 
-                        <a href="#" class="login bg-primary text-white">Fazer login</a>
+                        <a href="#" class="login bg-primary text-white"
+                        v-else key="notLogged" v-on:click.prevent="handleLogin"
+                        >
+                            Fazer login
+                        </a>
 
                     </nav>
 
@@ -91,7 +102,24 @@
                 <p class="text-center">Visite: <a href="https://youtube.com/hcodebrasi">Hcode Treinamentos</a></p>
             </footer>
 
-        </div>
+        </div>     
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+            let app = new Vue({
+                el: '#hcode-blog',
+                data: {
+                    isLogged: false,
+                    username: 'Vinícius'
+                },
+                methods: {
+                    handleLogin() {
+                        this.isLogged = !this.isLogged;
+                    }
+                }
+            })
+        </script>
 
     </body>
 </html>
